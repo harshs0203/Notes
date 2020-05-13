@@ -19,6 +19,7 @@
         app:srcCompat="@drawable/notes" />
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="341dp"
         android:layout_height="61dp"
         android:layout_marginBottom="540dp"
