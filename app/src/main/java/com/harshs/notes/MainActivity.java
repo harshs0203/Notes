@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,13 +35,22 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences("com.harshs.notes", Context.MODE_PRIVATE);
         ListView listView =  findViewById(R.id.listView);
+        TextView textView = findViewById(R.id.textView);
 
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes",null);
 
-        if(set==null){
-            notes.add("Example Note");
+        if(set!=null){
+
+            textView.setVisibility(View.INVISIBLE);
+
+            notes = new ArrayList<>(set);
+        }
+        if(notes.size() == 0){
+
+            textView.setVisibility(View.VISIBLE);
+
         }else{
-         notes = new ArrayList<>(set);
+            textView.setVisibility(View.INVISIBLE);
         }
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, notes);
         listView.setAdapter(arrayAdapter);
@@ -100,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(getApplicationContext(),NoteEditorActivity.class);
             startActivity(intent);
+            Toast.makeText(getApplicationContext(),"Enter your note and press back when done :)",Toast.LENGTH_LONG).show();
 
             return true;
         }
