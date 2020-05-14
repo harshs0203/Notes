@@ -1,8 +1,10 @@
 package com.harshs.notes;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,27 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(intent);
 
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Delete Note")
+                        .setMessage("Do you want to delete this note")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                which = position;
+                                notes.remove(which);
+                                arrayAdapter.notifyDataSetChanged();
+                                Toast.makeText(getApplicationContext(),"Note Deleted",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No",null).show();
+                return true;
             }
         });
     }
