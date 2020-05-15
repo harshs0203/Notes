@@ -8,8 +8,9 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="409dp"
-        android:layout_height="85dp"
+        android:layout_width="373dp"
+        android:layout_height="235dp"
+        android:layout_marginStart="1dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="630dp"
         android:cacheColorHint="@android:color/background_dark"
@@ -21,8 +22,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="418dp"
-        android:layout_height="52dp"
+        android:layout_width="400dp"
+        android:layout_height="70dp"
         android:layout_marginStart="176dp"
         android:layout_marginTop="310dp"
         android:layout_marginEnd="177dp"
